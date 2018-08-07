@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Registration Suite" parallel="false">
+<listeners>
+        <listener class-name="com.pm.listeners.ExtentReporter" />
+</listeners>
+<!--  Test --> 
+    <!--  -->
+  <test name="Login API">
+    <classes>
+      <class name="com.pm.api.login"/>
+    </classes>
+  </test> 
+<test name="Logout API">
+    <classes>
+      <class name="com.pm.api.logout"/>
+    </classes>
+  </test>    
+</suite> <!-- Suite -->

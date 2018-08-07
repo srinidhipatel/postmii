@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.pm.api.login">
+        <methods>
+          <include name="loginAPI_ResponseVerification_token_id_email"/>
+          <include name="urlSetUp"/>
+          <include name="ShuttingDownAllDependencies"/>
+          <include name="TriggerDependencies"/>
+        </methods>
+      </class> <!-- com.pm.api.login -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

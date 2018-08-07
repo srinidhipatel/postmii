@@ -1,0 +1,25 @@
+{
+"Halodoc" : {
+"AppPackageName":"com.linkdokter.halodoc.android",
+"AppActivity":"com.linkdokter.halodoc.android.ui.activity.SplashActivity",
+"_ios_AppPackageName":"com.linkdokter.halodoc",
+"BundleId":"com.linkdokter.halodoc",
+"ios_AppActivity":"com.linkdokter.halodoc.HaloDociOS.HomeScreen"
+},
+"HalodocStage":{
+"AppPackageName":"com.linkdokter.halodoc.android",
+"AppActivity":"com.linkdokter.halodoc.android.ui.activity.SplashActivity",
+"ios_AppPackageName":"com.linkdokter.halodoc.HaloDoc",
+"ios_AppActivity":"com.linkdokter.halodoc.ui.activity.SplashActivity"
+},
+"OTP Details" :{
+"Phone Number":"12345678913",
+"_Phone Number": "82213509455",
+"OTP":"416895",
+"AutoOTP":"true"
+},
+
+"Invalid OTP":{
+"Invalid OTP" : "000000"
+}
+}
