@@ -1,48 +1,36 @@
 package com.pm.api;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
+
 import org.json.JSONObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.pm.utilities.Constants;
 import com.pm.utilities.RestUtilities;
 import com.pm.utilities.TestBase;
 
-public class login extends TestBase{
+public class info extends TestBase{
 
 	String sResponse,sParameters;
 	String sURL;
 	Logger log = Logger.getLogger(getClass().getSimpleName());
+	login oLogin = new login();
 	
 @BeforeClass
 public void urlSetUp() throws Exception{
 	sParameters=oConst.paramLogin;
 	sURL=System.getProperty("host");
 	sURL=sURL+System.getProperty("basePath");
-	sURL=sURL+System.getProperty("URI_login");
+	sURL=sURL+System.getProperty("URI_infos");
 	log.info(sURL);
 }
-	public String loginToPostMii() throws Exception{
-		urlSetUp();
-		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin);
-		JSONObject oJsResdata=new JSONObject(sResponse.toString());
-		Constants.sTokenOnLogin=oJsResdata.getString("token");
-		JSONArray oJsArrCountry = oJsResdata.getJSONArray("countries");
-		log.info(oJsArrCountry);
-		JSONArray oJsArrLocation = oJsArrCountry.getJSONArray(0);
-		log.info(oJsArrLocation);
-		Constants.sCountryCode=oJsArrLocation.get(0).toString();
-		log.info(oConst.sTokenOnLogin);
-		return sResponse; 
-	}
+	
 	@Test (priority=1)
 	public void loginAPI_ResponseChecking() throws Exception {
-		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin);
-		log.info(sResponse);
+		sResponse=oLogin.loginToPostMii();
+		
 	}
-	@Test (priority=2)
+	//@Test (priority=2)
 	public void loginAPI_ErrorInDatas_ResponseCode400() throws Exception {
 		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin.replace("main", ""));
 		if(RestUtilities.iStatusCode!=400)
