@@ -7,11 +7,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.pm.utilities.Constants;
-import com.pm.utilities.RestUtilities;
 import com.pm.utilities.TestBase;
+
+import io.restassured.response.Response;
 
 public class login extends TestBase{
 
+	Response res;
 	String sResponse,sParameters;
 	String sURL;
 	Logger log = Logger.getLogger(getClass().getSimpleName());
@@ -26,35 +28,48 @@ public void urlSetUp() throws Exception{
 }
 	public String loginToPostMii() throws Exception{
 		urlSetUp();
-		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin);
-		JSONObject oJsResdata=new JSONObject(sResponse.toString());
+		res=oResUtil.ufPost(sURL, oConst.paramLogin);
+		JSONObject oJsResdata=new JSONObject(res.asString());
+		JSONObject oJsTemp;
 		Constants.sTokenOnLogin=oJsResdata.getString("token");
+		Constants.sTemplateID=Integer.toString(oJsResdata.getInt("id"));
 		JSONArray oJsArrCountry = oJsResdata.getJSONArray("countries");
 		log.info(oJsArrCountry);
-		JSONArray oJsArrLocation = oJsArrCountry.getJSONArray(0);
+		oJsTemp=oJsArrCountry.getJSONObject(0);
+		Constants.sFilterID = Integer.toString(oJsTemp.getInt("id"));
+		JSONArray oJsArrLocation = oJsTemp.getJSONArray("locations");
 		log.info(oJsArrLocation);
-		Constants.sCountryCode=oJsArrLocation.get(0).toString();
-		log.info(oConst.sTokenOnLogin);
-		return sResponse; 
+		oJsTemp=oJsArrLocation.getJSONObject(0);
+		Constants.sCountryCode=Integer.toString(oJsTemp.getInt("id"));
+		
+		log.info("Token: "+Constants.sTokenOnLogin);
+		log.info("Country ID: "+Constants.sCountryCode);
+		return res.asString(); 
 	}
 	@Test (priority=1)
 	public void loginAPI_ResponseChecking() throws Exception {
-		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin);
-		log.info(sResponse);
+		
+		res=oResUtil.ufPost(sURL, oConst.paramLogin);
+		if(res.statusCode()!=Constants.iHTTPCode201)
+			throw new Exception("Expected status code 201 but found "+res.statusCode());
+		
 	}
 	@Test (priority=2)
 	public void loginAPI_ErrorInDatas_ResponseCode400() throws Exception {
-		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin.replace("main", ""));
-		if(RestUtilities.iStatusCode!=400)
-			throw new Exception("There is error in login datas");
-		log.info(sResponse);
+		res=oResUtil.ufPost(sURL, oConst.paramLogin.replace("main", ""));
+		if(res.statusCode()!=Constants.iHTTPCode400)
+			throw new Exception("Expected status code 400 but found "+res.statusCode());
+		
 	}
 
 	@Test (priority=3)
 	public void loginAPI_ResponseVerification_token_id_email() throws Exception {
-		sResponse=oResUtil.ufPost(sURL, oConst.paramLogin);
-		JSONObject oJsResdata=new JSONObject(sResponse.toString());
-		log.info(sResponse);
+		res=oResUtil.ufPost(sURL, oConst.paramLogin);
+		if(res.statusCode()!=Constants.iHTTPCode201)
+			throw new Exception("Expected status code 201 but found "+res.statusCode());
+		
+		JSONObject oJsResdata=new JSONObject(res.asString());
+		
 		if(oJsResdata.getString("token").isEmpty())
 			throw new Exception("Token is empty..");
 		if(oJsResdata.getString("email").isEmpty())

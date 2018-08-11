@@ -32,6 +32,7 @@ public class AndroidUtilities extends TestBase{
 	
 	public void launchApp() throws Exception {
 
+		TestBase.AutomationRunning=Constants.sAutomationMobile;
 		oJsonTestData = oCommUtil.ReadJsonFileGetJsonObject(System.getProperty("user.dir")+"/src/TestData/TestDataInput.json");
 		JSONObject oGetAppPackageActivity = oJsonTestData.getJSONObject(System.getProperty("AppName"));
 		

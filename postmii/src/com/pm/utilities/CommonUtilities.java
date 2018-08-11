@@ -5,6 +5,11 @@ import io.appium.java_client.AppiumDriver;
 
 import io.appium.java_client.android.AndroidDriver;
 
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,6 +30,7 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
+import javax.imageio.ImageIO;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -139,7 +145,32 @@ public class CommonUtilities {
 			e.printStackTrace();
 		}
 	}
-
+	public static String getScreenshot(AppiumDriver<WebElement> driver) throws Exception
+	{
+		boolean b=true;
+		String path = System.getProperty("user.dir")+"/Screenshot/"+System.currentTimeMillis()+".png";
+		if(b) {
+		 Robot r = new Robot();	 
+         // Used to get ScreenSize and capture image
+         Rectangle capture = 
+         new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+         BufferedImage Image = r.createScreenCapture(capture);
+         ImageIO.write(Image, "jpg", new File(path));
+         System.out.println("Screenshot saved");
+		}else {
+         TakesScreenshot ts=(TakesScreenshot) driver;
+ 		File src=ts.getScreenshotAs(OutputType.FILE);
+ 		File destination=new File(path);
+ 		try 
+ 		{
+ 			FileUtils.copyFile(src, destination);
+ 		} catch (IOException e) 
+ 		{
+ 			System.out.println("Capture Failed "+e.getMessage());
+ 		}}
+		return path;
+	}
+	
 	public void deleteScreenShotDirectory() {
 		String destDir = "screenshots";
 		String SRC_FOLDER = System.getProperty("user.dir") + "/test-output/"

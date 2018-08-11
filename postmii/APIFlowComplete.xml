@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Registration Suite" parallel="false">
+<suite name="Registration Suite">
 <listeners>
-        <listener class-name="com.pm.listeners.ExtentReporter" />
+        <listener class-name="com.pm.listeners.TestListener" />
 </listeners>
 <!--  Test --> 
     <!--  -->
@@ -13,6 +13,26 @@
 <test name="Logout API">
     <classes>
       <class name="com.pm.api.logout"/>
+    </classes>
+  </test>    
+  <test name="Info API">
+    <classes>
+      <class name="com.pm.api.info"/>
+    </classes>
+  </test>    
+  <test name="Filter API">
+    <classes>
+      <class name="com.pm.api.filter"/>
+    </classes>
+  </test>    
+  <test name="Template API">
+    <classes>
+      <class name="com.pm.api.template"/>
+    </classes>
+  </test>    
+  <test name="Emailcard API">
+    <classes>
+      <class name="com.pm.api.emailcard"/>
     </classes>
   </test>    
 </suite> <!-- Suite -->

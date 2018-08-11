@@ -1,19 +1,16 @@
 package com.pm.api;
 
 import org.apache.log4j.Logger;
-import org.hamcrest.core.IsInstanceOf;
-import org.json.JSONObject;
+
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.pm.utilities.Constants;
-import com.pm.utilities.RestUtilities;
 import com.pm.utilities.TestBase;
 
 import io.restassured.response.Response;
 
-public class logout extends TestBase{
+public class filter extends TestBase{
 
 	Response res;
 	String sResponse,sParameters;
@@ -21,28 +18,37 @@ public class logout extends TestBase{
 	Logger log = Logger.getLogger(getClass().getSimpleName());
 	login oLogin = new login();
 	
-@BeforeTest
+@BeforeClass
 public void urlSetUp() throws Exception{
 	sParameters=oConst.paramLogin;
 	sURL=System.getProperty("host");
 	sURL=sURL+System.getProperty("basePath");
-	sURL=sURL+System.getProperty("URI_logout");
+	sURL=sURL+System.getProperty("URI_Filter");
 	log.info(sURL);
 }
+	
 	@Test (priority=1)
-	public void logoutAPI_ResponseChecking() throws Exception {
+	public void filterAPI_ResponseChecking() throws Exception {
 		oLogin.loginToPostMii();
-		res=oResUtil.ufPostheader(sURL,oConst.headerXTokenKey,Constants.sTokenOnLogin);
+		sURL=sURL+Constants.sFilterID;
+		res=oResUtil.ufGetheader(sURL,oConst.headerXTokenKey, Constants.sTokenOnLogin);
 		if(res.statusCode()!=Constants.iHTTPCode200)
-			throw new Exception("Expected status code 200 but found "+res.statusCode());
+			throw new Exception("Expected status code 201 but found "+res.statusCode());
 		
 	}
+
 	@Test (priority=2)
-	public void logoutAPI_WrongToken_ResponseCode401() throws Exception {
-		oLogin.loginToPostMii();
-		res=oResUtil.ufPostheader(sURL,oConst.headerXTokenKey, Constants.sTokenOnLogin+"123");
+	public void filterAPI_WrongToken_ResponseCode401() throws Exception {
+		res=oResUtil.ufGetheader(sURL,oConst.headerXTokenKey, Constants.sTokenOnLogin+"123");
 		if(res.statusCode()!=Constants.iHTTPCode401)
 			throw new Exception("Expected status code 401 but found "+res.statusCode());
+		
+	}
+	@Test (priority=3)	
+	public void filterAPI_WrongfilterCode_ResponseCode405() throws Exception {
+		res=oResUtil.ufGetheader(sURL+"123",oConst.headerXTokenKey, Constants.sTokenOnLogin);
+		if(res.statusCode()!=Constants.iHTTPCode405)
+			throw new Exception("Expected status code 405 but found "+res.statusCode());
 		
 	}
 }
