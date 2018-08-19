@@ -1,8 +1,6 @@
 package com.pm.utilities;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.AppiumDriver;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
@@ -49,6 +47,8 @@ public class AndroidUtilities extends TestBase{
 			capabilities.setCapability("appActivity",oGetAppPackageActivity.get("AppActivity")); // This is Launcher activity of your app (you can get it from apk info app)
 			capabilities.setCapability("newCommandTimeout", 60 * 5);
 			capabilities.setCapability("noReset", true);
+			//to avoid failures for ID 
+			capabilities.setCapability("automationName","UiAutomator2");
 			driver = new AndroidDriver<WebElement>(new URL("http://"+System.getProperty("AppiumServerIp")+"/wd/hub"), capabilities);
 		}
 		if(System.getProperty("PLATFORM_NAME").toLowerCase().contains("ios"))
@@ -78,41 +78,18 @@ public class AndroidUtilities extends TestBase{
 		driver.quit();
 	}
 
-	public boolean ufElementDisplayed(AppiumDriver<WebElement> driver, String ORValue) throws Exception {
-		String[] sArrReadyToServe = oCommUtil.ufSplitMe(ORValue);
-		boolean bDisplayStatus=true;
-		//log.info(ORValue+"="+sArrReadyToServe[0]+"::"+sArrReadyToServe[1]);
-		switch(sArrReadyToServe[0].toUpperCase().trim()) 
-		{
-		case "ID":
-
-			try {
-				bDisplayStatus= driver.findElement(By.id(sArrReadyToServe[1].trim())).isDisplayed();
-			}catch(Exception ea){
-				bDisplayStatus=false;
-			}
-			break;
-		case "XPATH":
-			try {
-				bDisplayStatus = driver.findElement(By.xpath(sArrReadyToServe[1].trim())).isDisplayed();
-			}catch(Exception ea){
-				bDisplayStatus=false;
-			}
-			break;
-
-		default :
-			log.info("Locator not available display");
-		}
-		if(!bDisplayStatus)
-			log.info("Element Displayed Failure : "+ORValue+"="+sArrReadyToServe[1]);
-		/*else
-			log.info("Element Displayed Suceess : "+ORValue+"="+sArrReadyToServe[1]);*/
-		
-		return bDisplayStatus;
-
-	
+	public boolean ufElementDisplayed(AppiumDriver<WebElement> driver, String element) throws Exception {
+		return true;//driver.findElement(element).isDisplayed();
 	}
 	
+	public void ufLocalisationChecking(WebElement element,String sKey) throws Exception {
+		oJsonLocalisationData=oJsonLocalisation.getJSONObject(System.getProperty("localisation"));
+		log.info("Expected :: "+element.getText()+"\nActual :: "+oJsonLocalisationData.get(sKey));
+		if(!element.getText().equals(oJsonLocalisationData.get(sKey)))
+			throw new Exception("**********************Failed ***********************"
+					+ "\nExpected :: "+element.getText()+"\nActual :: "+oJsonLocalisationData.get(sKey));
+		
+	}
 	public boolean ufWait(int itimetowait) throws Exception {
 		boolean bResultFlag=false;
 		
@@ -347,6 +324,30 @@ public class AndroidUtilities extends TestBase{
 			exitCount++;
 	    }
 		return bRes_flag;
+	}
+
+	public boolean ufWaitForElementDisplayed(WebElement element, int itimetowait) throws Exception {
+		boolean bResultFlag = false;
+		for (int i=0; i<(itimetowait*2); i++)
+		{
+			try {
+			bResultFlag = element.isDisplayed();
+
+			if (bResultFlag){
+				log.info("Element Displayed");
+				log.info(i);
+				log.info("Exit Time "+ i/2);
+				return bResultFlag;
+			}
+			
+			}catch(Exception ea) {
+			log.info("page still not loaded");
+			}
+			Thread.sleep(500);
+			
+		}
+		return bResultFlag; 
+
 	}
 	
 //	public void ScrollToText() throws InterruptedException {

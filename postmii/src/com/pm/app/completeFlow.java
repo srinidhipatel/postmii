@@ -1,26 +1,37 @@
 package com.pm.app;
 
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
+import com.pm.apppo.locationLaunguageCountrySelectionPO;
 import com.pm.apppo.loginPO;
 import com.pm.utilities.TestBase;
 
 public class completeFlow extends TestBase{
 
-	EventFiringWebDriver eventFiringWebDriver;
 	loginPO poLogin;
+	locationLaunguageCountrySelectionPO poCountry;
+
 	@BeforeClass
 	public void init() {
-	
-	poLogin = new loginPO(eventFiringWebDriver);
+	System.out.println("Before Start driver Object:: "+driver);
+	poLogin = new loginPO(driver);
+	poCountry = new locationLaunguageCountrySelectionPO(driver);
 	}
 	@Test
-	public void completeFlow() throws Exception{
+	public void loginFlow() throws Exception{
+		poLogin.gettingControl();
 		poLogin.clickOnManual();
 		poLogin.login();
+	}
+	@Test(dependsOnMethods = {"loginFlow"})
+	public void countrySelection() throws Exception{
+		poCountry.locationSelection();
+		poCountry.wakeUpScreen();
+	}
+	@Test(dependsOnMethods = {"countrySelection"})
+	public void launguageSelection() throws Exception{
+		poCountry.launguageDisplayCheck();
+		poCountry.launguageSelect();
 	}
 	
 }

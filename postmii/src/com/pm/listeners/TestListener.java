@@ -10,6 +10,8 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import com.pm.listeners.BaseTest;
 import com.pm.listeners.ExtentManager;
+import com.pm.utilities.CommonUtilities;
+import com.pm.utilities.TestBase;
 
 public class TestListener extends BaseTest implements ITestListener {
 
@@ -46,12 +48,14 @@ public class TestListener extends BaseTest implements ITestListener {
     public synchronized void onTestFailure(ITestResult result) {
         System.out.println((result.getMethod().getMethodName() + " failed!"));
         test.get().fail(result.getThrowable());
-      	/*try {
+        
+      	try {
+      	System.out.println("TestNgListner : Screenshot for failed case");
 		String	temp = CommonUtilities.getScreenshot(TestBase.driver);
-        	logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(temp).build());
+        	
 		} catch ( Exception e) {
 			e.printStackTrace();
-		}*/
+		}
     }
 
     @Override

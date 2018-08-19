@@ -16,7 +16,9 @@
 },
 "Credentials":{
 "username":"maintec@postmii.com",
-"password":"maintec"
+"password":"maintec",
+"country":"India",
+"event":"Test1"
 }
 
 }

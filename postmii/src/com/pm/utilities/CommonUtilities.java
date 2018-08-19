@@ -273,9 +273,9 @@ public class CommonUtilities {
 			} else if (oAndUtil.ufElementDisplayed(driver, "WelcomeScreen_OTP_CountryCode")) {
 				
 				log.info("Clicking on OTP Navigate Back");
-				if(TestBase.sLocalization.equalsIgnoreCase(TestBase.sLocalEnglish))
+				if(TestBase.sLocalisation.equalsIgnoreCase(TestBase.sLocalEnglish))
 					oAndUtil.ufClickElement(driver, "WelcomeScreen_OTP_NavigateBackButton");
-				else if(TestBase.sLocalization.equalsIgnoreCase(TestBase.sLocalIndonasia))
+				else if(TestBase.sLocalisation.equalsIgnoreCase(TestBase.sLocalIndonasia))
 					oAndUtil.ufClickElement(driver, "WelcomeScreen_OTP_NavigateBackButton_Indonasia");
 				else 
 					log.info("Launguage not found to handle");
@@ -328,18 +328,18 @@ public class CommonUtilities {
 
 	public void SendEmailAfterTestSuite() throws Exception {
 
-		String from = "automation@halodoc.com";
+		String from = "maintec@postmii.com";
 
 		// Sender's email ID needs to be mentioned
 		// String to =
 		
 		
-		String to = "srinidhi.b@halodoc.com";
+		String to = "maintec@postmii.com";
 		final String username = "automation";// change accordingly
 		final String password = "Auto@123";// change accordingly
 
 		// Assuming you are sending email through relay.jangosmtp.net
-		String host = "mail.halodoc.com";
+		String host = "mail.Postmii.com";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -368,14 +368,14 @@ public class CommonUtilities {
 					InternetAddress.parse(to));
 
 			// Set Subject: header field
-			message.setSubject("Automation: HaloDoc  Mobile Application Testing hourly status report");
+			message.setSubject("Automation: Postmii  Mobile Application Testing hourly status report");
 
 			// Create the message part
 			BodyPart messageBodyPart = new MimeBodyPart();
 
 			// Now set the actual message
 			messageBodyPart
-			.setText(" Dear All, \n\n PFA of HaloDoc  Mobile Testing hourly status report.. \n\n Regards \n Srinidhi.B \n Mobile: +919964500275 \n ");
+			.setText(" Dear All, \n\n PFA of Postmii  Mobile Testing hourly status report.. \n\n Regards \n Srinidhi.B \n Mobile: +919964500275 \n ");
 
 			// Create a multipar message
 			Multipart multipart = new MimeMultipart();

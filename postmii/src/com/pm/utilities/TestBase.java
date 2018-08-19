@@ -26,15 +26,14 @@ public class TestBase {
 	public static CommonUtilities oCommUtil = new CommonUtilities();
 	public static Constants oConst = new Constants();
 	public static RestUtilities oResUtil = new RestUtilities();
-	public static pageFunctions oPageFunc = new pageFunctions();
-	public static pageValidations oPageVal = new pageValidations();
 	public static String sErrorMessage = "";
 	public static String sClassName = "";
-	public static String sLocalization = "";
+	public static String sLocalisation = "";
 	public static String sLocalEnglish = "English";
 	public static String sLocalIndonasia = "Indonesia";
-	public static JSONObject oJsonLocalization = new JSONObject();
-	public static JSONObject oJsonLocalizationData = new JSONObject();
+	public static JSONObject oJsonLocalisation = new JSONObject();
+	public static JSONObject oJsonLocalisationData = new JSONObject();
+	public static JSONObject oJsonTestData;
 	public static String AutomationRunning;
 	Logger log = Logger.getLogger(getClass().getSimpleName());
 
@@ -51,17 +50,23 @@ public class TestBase {
 
 		oCommUtil.loadPropertyFiles(System.getProperty("user.dir") + "/src/TestData/TestData.properties");
 		oCommUtil.loadLog4jProperty(System.getProperty("user.dir") + "/src/Properties/log4j.properties");
+		oJsonTestData = oCommUtil
+				.ReadJsonFileGetJsonObject(System.getProperty("user.dir") + "/src/TestData/TestDataInput.json");
+		
+		oJsonLocalisation = oCommUtil.ReadJsonFileGetJsonObject(System.getProperty("user.dir")+"/src/TestData/LocalisationSupport.json");
+		sLocalisation=System.getProperty("localisation");
+		
 		/*
-		 * oJsonLocalization =
+		 * oJsonLocalisation =
 		 * oCommUtil.ReadJsonFileGetJsonObject(System.getProperty("user.dir")+
 		 * "/src/TestData/LocalisationSupport.json");
-		 * sLocalization=System.getProperty("localization");
-		 * log.info("Localisation set to : "+sLocalization);
-		 * if(sLocalization.equalsIgnoreCase(sLocalEnglish)) oJsonLocalizationData =
-		 * oJsonLocalization.getJSONObject(sLocalEnglish); else { oJsonLocalizationData
-		 * = oJsonLocalization.getJSONObject(sLocalIndonasia);
-		 * sLocalization=sLocalIndonasia; }
-		 * log.info(oJsonLocalizationData.get("sWelcomToHalodoc").toString());
+		 * sLocalisation=System.getProperty("localization");
+		 * log.info("Localisation set to : "+sLocalisation);
+		 * if(sLocalisation.equalsIgnoreCase(sLocalEnglish)) oJsonLocalisationData =
+		 * oJsonLocalisation.getJSONObject(sLocalEnglish); else { oJsonLocalisationData
+		 * = oJsonLocalisation.getJSONObject(sLocalIndonasia);
+		 * sLocalisation=sLocalIndonasia; }
+		 * log.info(oJsonLocalisationData.get("sWelcomToHalodoc").toString());
 		 */
 		if(System.getProperty("AutomationRunning").equalsIgnoreCase(Constants.sAutomationMobile))
 		{oCommUtil.ufdeletescreenshots();
