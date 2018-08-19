@@ -1,0 +1,92 @@
+{
+"EN" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !",
+"SelectYourLanguage!":"Hi, Select your language!",
+"BACK":"BACK",
+"LANGUAGES":"LANGUAGES",
+"TEMPLATES":"TEMPLATES",
+"PHOTO":"PHOTO",
+"EDITION":"EDITION",
+"PRINT":"PRINT",
+"CHOOSE_THIS_CARD":"CHOOSE THIS CARD"
+
+},
+"ES" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"FR" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"DE" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"IT" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"PT" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"JA" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"RU" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+},
+"ZH" : {
+"login":"login",
+"email":"email",
+"password":"password",
+"selectCountry":"Select country",
+"selectCity":"Select city or event",
+"OK":"OK",
+"CreateYourPostcards": "Create your postcards! \t\t\t Créez vos cartes postales ! \t\t\t Создайте свои открытки! \t\t\t あなたのポストカードを作成します！ \t\t\t Crea le tue cartoline! \t\t\t Crea sus tarjetas postales ! \t\t\t 创建您的明信片！ \t\t\t Erstellen Sie Ihre Postkarten! \t\t\t Crie os seus cartões postais !"
+}
+}
