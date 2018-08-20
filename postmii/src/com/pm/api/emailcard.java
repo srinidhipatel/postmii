@@ -32,7 +32,7 @@ public void urlSetUp() throws Exception{
 }
 
 
-//@DataProvider(name = "language")
+@DataProvider(name = "language")
 
 public static Object[][] credentials() {
 
@@ -40,34 +40,43 @@ public static Object[][] credentials() {
 
 }
 
-	@Test //(priority=1 , dataProvider = "language")
-	//public void emailCardAPI_ResponseChecking(String sLanguage) throws Exception {
-		public void emailCardAPI_ResponseChecking() throws Exception {	
-		//log.info("Language Running for "+sLanguage);
+	@Test (priority=1 , dataProvider = "language")
+	public void emailCardAPI_ResponseChecking(String sLanguage) throws Exception {
+		log.info("Language Running for "+sLanguage);
 		HashMap< String , String> map = new HashMap<String, String>();
 		map.put("location",Constants.sCountryCode);map.put(oConst.headerXTokenKey, Constants.sTokenOnLogin);
-		map.put("email", "srinidhi.test@gmail.com");map.put("lang", "EN");
+		map.put("email", "srinidhi.test@gmail.com");map.put("lang", sLanguage);
 		map.put("content", "multipart/form-data");
 
-		res=oResUtil.ufPostheaderParamKey(sURL,map,oConst.paramEmailCard.replace("changemelang", "EN").replace("changemecountry", Constants.sCountryCode),oConst.headerXTokenKey, Constants.sTokenOnLogin);
+		res=oResUtil.ufPostheaderParamKey(sURL,map);
 		if(res.statusCode()!=Constants.iHTTPCode200)
-			throw new Exception("Expected status code 201 but found "+res.statusCode());
+			throw new Exception("Expected status code 200 but found "+res.statusCode()+"Body : "+map.toString());
 		
 	}
 
-	/*@Test (priority=2)
-	public void emailCardAPI_WrongToken_ResponseCode401() throws Exception {
-		res=oResUtil.ufPostheaderParamKey(sURL,oConst.paramEmailCard.replace("changemelang", "EN"),oConst.headerXTokenKey, Constants.sTokenOnLogin+"123");
+	@Test (priority=2, dataProvider = "language")
+	public void emailCardAPI_WrongToken_ResponseCode401(String sLanguage) throws Exception {
+		log.info("Language Running for "+sLanguage);
+		
+		HashMap< String , String> map = new HashMap<String, String>();
+		map.put("location",Constants.sCountryCode);map.put(oConst.headerXTokenKey, Constants.sTokenOnLogin+"123");
+		map.put("email", "srinidhi.test@gmail.com");map.put("lang", sLanguage);
+		map.put("content", "multipart/form-data");
+		res=oResUtil.ufPostheaderParamKey(sURL,map);
 		if(res.statusCode()!=Constants.iHTTPCode401)
-			throw new Exception("Expected status code 401 but found "+res.statusCode());
+			throw new Exception("Expected status code 401 but found "+res.statusCode()+"Body : "+map.toString());
 		
 	}
 	@Test (priority=3)	
 	public void emailCardAPI_WrongLanguageCode_ResponseCode405() throws Exception {
-		res=oResUtil.ufPostheaderParamKey(sURL,oConst.paramEmailCard,oConst.headerXTokenKey, Constants.sTokenOnLogin);
+		HashMap< String , String> map = new HashMap<String, String>();
+		map.put("location",Constants.sCountryCode);map.put(oConst.headerXTokenKey, Constants.sTokenOnLogin);
+		map.put("email", "srinidhi.test@gmail.com");map.put("lang", "ENMB");
+		map.put("content", "multipart/form-data");
+		res=oResUtil.ufPostheaderParamKey(sURL,map);
 		if(res.statusCode()!=Constants.iHTTPCode405)
-			throw new Exception("Expected status code 405 but found "+res.statusCode());
+			throw new Exception("Expected status code 405 but found "+res.statusCode()+"Body : "+map.toString());
 		
-	}*/
+	}
 }
 	
