@@ -38,7 +38,7 @@ public class ExtentManager {
         htmlReporter.config().setReportName(fileName);
         
         
-        htmlReporter.setAppendExisting(true);
+        //htmlReporter.setAppendExisting(true);
        
         //htmlReporter.config().setAutoCreateRelativePathMedia(true);
         extent = new ExtentReports();

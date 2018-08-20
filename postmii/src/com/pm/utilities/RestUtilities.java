@@ -27,8 +27,8 @@ public class RestUtilities extends TestBase{
 		log.info(res.asString());
 		return res;
 	}
-	public Response ufPostheaderParamKey(String sURL,HashMap<String, String> map, String Parameter, String sHeaderKey,String sHeaderValue) throws Exception {
-		log.info("setting Base URL as : "+sURL+"\nParams: "+Parameter);
+	public Response ufPostheaderParamKey(String sURL,HashMap<String, String> map) throws Exception {
+		log.info(map.toString());
 		RestAssured.baseURI=sURL;
 		Response res = RestAssured.given().headers(map).post();//.contentType(Constants.sContentType)
 		//Response res = RestAssured.given().headers(Trial).contentType(Constants.sContentType).post();
