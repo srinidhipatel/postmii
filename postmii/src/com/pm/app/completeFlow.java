@@ -27,6 +27,7 @@ public class completeFlow extends TestBase{
 	public void countrySelection() throws Exception{
 		poCountry.locationSelection();
 		poCountry.wakeUpScreen();
+		
 	}
 	@Test(dependsOnMethods = {"countrySelection"})
 	public void launguageSelection() throws Exception{

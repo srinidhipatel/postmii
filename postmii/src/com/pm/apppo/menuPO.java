@@ -44,7 +44,7 @@ public class menuPO extends TestBase {
 		
 		String sLaunguageNotDisplayError=null;
 		if(!buttBack.isDisplayed())
-			sLaunguageNotDisplayError= "button Back Not Displayed ";
+			sLaunguageNotDisplayError= "button Back Not Displayed  ";
 		if(!buttLanguage.isDisplayed())
 			sLaunguageNotDisplayError= "button Language Not Displayed ";
 		if(!buttPhoto.isDisplayed())
