@@ -47,10 +47,10 @@ public void urlSetUp() throws Exception{
 		
 	}
 	@Test (priority=3)	
-	public void infosAPI_WrongCountryCode_ResponseCode405() throws Exception {
+	public void infosAPI_WrongCountryCode_ResponseCode418() throws Exception {
 		res=oResUtil.ufGetheader(sURL+"123",oConst.headerXTokenKey, Constants.sTokenOnLogin);
-		if(res.statusCode()!=Constants.iHTTPCode405)
-			throw new Exception("Expected status code 405 but found "+res.statusCode());
+		if(res.statusCode()!=Constants.iHTTPCode418)
+			throw new Exception("Expected status code 418 but found "+res.statusCode());
 		
 	}
 }

@@ -7,7 +7,7 @@ public class Constants {
 	
 	//HTTP Error codes for status return validation
 	public static final int iHTTPCode201=201,iHTTPCode400=400,iHTTPCode200=200,iHTTPCode404=404,
-			iHTTPCode401=401,iHTTPCode405=405;
+			iHTTPCode401=401,iHTTPCode405=405,iHTTPCode418=418;
 	public static final String sContentType="application/json";
 	
 	//Login API is setting up these values

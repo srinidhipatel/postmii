@@ -68,14 +68,14 @@ public static Object[][] credentials() {
 		
 	}
 	@Test (priority=3)	
-	public void emailCardAPI_WrongLanguageCode_ResponseCode405() throws Exception {
+	public void emailCardAPI_WrongLanguageCode_ResponseCode200() throws Exception {
 		HashMap< String , String> map = new HashMap<String, String>();
 		map.put("location",Constants.sCountryCode);map.put(oConst.headerXTokenKey, Constants.sTokenOnLogin);
 		map.put("email", "srinidhi.test@gmail.com");map.put("lang", "ENMB");
 		map.put("content", "multipart/form-data");
 		res=oResUtil.ufPostheaderParamKey(sURL,map);
-		if(res.statusCode()!=Constants.iHTTPCode405)
-			throw new Exception("Expected status code 405 but found "+res.statusCode()+"Body : "+map.toString());
+		if(res.statusCode()!=Constants.iHTTPCode200)
+			throw new Exception("Expected status code 200 but found "+res.statusCode()+"Body : "+map.toString());
 		
 	}
 }
