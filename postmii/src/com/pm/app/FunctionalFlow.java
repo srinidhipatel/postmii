@@ -1,6 +1,8 @@
 package com.pm.app;
 
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.pm.apppo.cameraPO;
@@ -10,7 +12,7 @@ import com.pm.apppo.mailPO;
 import com.pm.apppo.menuPO;
 import com.pm.utilities.TestBase;
 
-public class completeFlow extends TestBase{
+public class FunctionalFlow extends TestBase{
 
 	loginPO poLogin;
 	locationLaunguageCountrySelectionPO poCountry;
@@ -26,6 +28,11 @@ public class completeFlow extends TestBase{
 	poCamera = new cameraPO(driver);
 	poMail = new mailPO(driver);
 	}
+	
+	@DataProvider(name = "language")
+	public static Object[][] credentials() {
+	    return new Object[][] {{"langEnglish"},{"langFrance"},{"langRussian"},{"langChina"},{"langDeutsch"},{"langPortugues"},{"langJapan"},{"langDutch"},{"langEspanol"}};
+	}
 	@Test(priority=1)
 	public void loginFlow() throws Exception{
 		poLogin.gettingControl();
@@ -35,37 +42,19 @@ public class completeFlow extends TestBase{
 	@Test(priority=2, dependsOnMethods = {"loginFlow"})
 	public void countrySelection() throws Exception{
 		poCountry.locationSelection();
-		poCountry.wakeUpScreen();
-		
-	}
-	@Test(priority=3,dependsOnMethods = {"countrySelection"})
-	public void launguageSelection() throws Exception{
-		poCountry.launguageDisplayCheck();
-		poCountry.launguageSelect();
 	}
 	
-	@Test(priority=4,dependsOnMethods = {"launguageSelection"})
-	public void menuOptionChecking() throws Exception{
-		poMenu.menuItemsDisplay();
-	}
-	@Test(priority=5,dependsOnMethods = {"menuOptionChecking"})
-	public void backButtonInMenuFlow() throws Exception{
-		poMenu.backButtonWorkingAsExpected();
-		poMenu.cancelPreview();
-	}
-
-	@Test(priority=6,dependsOnMethods = {"menuOptionChecking"})
-	public void TakePic() throws Exception{
+	@Test(priority=3,dependsOnMethods = {"countrySelection"},dataProvider = "language")
+	public void EntireFlowAsPerlaunguageSelection(String sLanguage) throws Exception{
+		poCountry.wakeUpScreen();
+		poCountry.launguageSelect(sLanguage);
+		//poMenu.cancelPreview();
 		poCamera.takePhoto();
-		//poCamera.adjustPic(true);
+		poCamera.adjustPic(false);
 		poCamera.adjustBrightness();
 		poCamera.takeItToEmailPage();
-	}
-	
-	@Test(priority=6,dependsOnMethods = {"TakePic"})
-	public void sendEmail() throws Exception{
 		poMail.photEmailPAgeVerification();
 		poMail.sendEmail();
-		poMail.congratulation(true);
+		poMail.congratulation(false);
 	}
 }

@@ -3,7 +3,7 @@ package com.pm.api;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
-
+import org.json.JSONObject;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -18,6 +18,7 @@ public class emailcard extends TestBase{
 	Response res;
 	String sResponse,sParameters;
 	String sURL;
+	JSONObject oGetEmail;
 	Logger log = Logger.getLogger(getClass().getSimpleName());
 	login oLogin = new login();
 	
@@ -29,6 +30,7 @@ public void urlSetUp() throws Exception{
 	sURL=sURL+System.getProperty("URI_EmailCard");
 	log.info(sURL);
 	oLogin.loginToPostMii();
+	oGetEmail = oJsonTestData.getJSONObject("Credentials");
 }
 
 
@@ -45,7 +47,7 @@ public static Object[][] credentials() {
 		log.info("Language Running for "+sLanguage);
 		HashMap< String , String> map = new HashMap<String, String>();
 		map.put("location",Constants.sCountryCode);map.put(oConst.headerXTokenKey, Constants.sTokenOnLogin);
-		map.put("email", "srinidhi.test@gmail.com");map.put("lang", sLanguage);
+		map.put("email", oGetEmail.getString("emailToSendPhoto"));map.put("lang", sLanguage);
 		map.put("content", "multipart/form-data");
 
 		res=oResUtil.ufPostheaderParamKey(sURL,map);

@@ -1,6 +1,8 @@
 package com.pm.apppo;
 
 
+import javax.swing.ScrollPaneConstants;
+
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.openqa.selenium.WebElement;
@@ -8,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 import org.openqa.selenium.support.PageFactory;
 
+import com.pm.utilities.Constants;
 import com.pm.utilities.TestBase;
 
 import io.appium.java_client.AppiumDriver;
@@ -35,14 +38,45 @@ public class menuPO extends TestBase {
 	WebElement previousGridBtn;
 	@FindBy(id = "nextGridBtn")
 	WebElement nextGridBtn;
+	@FindBy(id="title")
+	WebElement chooseTemplateTitle;
+	@FindBy(id="rowOneColumnTwo")
+	WebElement templateOne;
+	@FindBy(id="rowTwoColumnTwo")
+	WebElement templateTwo;
+	locationLaunguageCountrySelectionPO poCountry;
 	
 	public menuPO(AppiumDriver<WebElement> driver) {
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+		poCountry = new locationLaunguageCountrySelectionPO(driver);
 	}
 
+	public void setLocalisationLaunguage() {
+		if(buttBack.getText().contains("BACK"))
+			sLocalisation=Constants.langEnglish;
+		else if(buttBack.getText().contains("返回"))
+			sLocalisation=Constants.langChina;
+		else if(buttBack.getText().contains("RETOUR"))
+			sLocalisation=Constants.langFrance;
+		else if(buttBack.getText().contains("НАЗАД"))
+			sLocalisation=Constants.langRussian;
+		else if(buttBack.getText().contains("VOLVER"))
+			sLocalisation=Constants.langEspanol;
+		else if(buttBack.getText().contains("ZURÜCK"))
+			sLocalisation=Constants.langDeutsch;
+		else if(buttBack.getText().contains("戻る"))
+			sLocalisation=Constants.langJapan;
+		else if(buttBack.getText().contains("VOLTAR"))
+			sLocalisation=Constants.langPortugues;
+		else if(buttBack.getText().contains("TERUG"))
+			sLocalisation=Constants.langDutch;
+		
+	}
 	public void menuItemsDisplay() throws Exception{
 		
 		String sLaunguageNotDisplayError=null;
+		oAndUtil.ufWaitForElementDisplayed(buttPhoto, 5);
+		oCommUtil.takeScreenShot(driver, getClass().getSimpleName()+oCommUtil.unixTimeStampInString());
 		if(!buttBack.isDisplayed())
 			sLaunguageNotDisplayError= "button Back Not Displayed  ";
 		if(!buttLanguage.isDisplayed())
@@ -62,6 +96,38 @@ public class menuPO extends TestBase {
 			
 		if(sLaunguageNotDisplayError!=null)
 			throw new Exception(sLaunguageNotDisplayError);
+	}
+	
+	public void backButtonWorkingAsExpected() throws Exception{
+		buttBack.click();
+		poCountry.launguageSelect();
+		oAndUtil.ufWaitForElementDisplayed(buttPhoto, 5);
+		oCommUtil.takeScreenShot(driver, getClass().getSimpleName()+oCommUtil.unixTimeStampInString());
+		if(!buttPhoto.isDisplayed())
+			throw new Exception("problem mwith back button in menu screen ");
+	}
+	public void cancelPreview() throws Exception{
+		String sLaunguageNotDisplayError=null;
+		cancelPreview.click();
+		Thread.sleep(1000);
+		oAndUtil.ufLocalisationChecking(chooseTemplateTitle, "CHOOSE_A_TEMPLATE");
+		if(!templateOne.isDisplayed())
+			sLaunguageNotDisplayError= "Template One Not Displayed ";
+		if(!templateTwo.isDisplayed())
+			sLaunguageNotDisplayError= "Template Two Not Displayed ";
+		
+		if(sLaunguageNotDisplayError!=null)
+			throw new Exception(sLaunguageNotDisplayError);
+		templateOne.click();
+		Thread.sleep(1000);
+		if(!chooseCard.isDisplayed())
+			sLaunguageNotDisplayError= "button choose Card message Not Displayed ";
+		cancelPreview.click();
+		Thread.sleep(1000);
+		templateTwo.click();
+		Thread.sleep(1000);
+		if(!chooseCard.isDisplayed())
+			sLaunguageNotDisplayError= "button choose Card message Not Displayed ";
 	}
 	
 }

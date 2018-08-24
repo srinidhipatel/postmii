@@ -18,7 +18,8 @@
 "username":"maintec@postmii.com",
 "password":"maintec",
 "country":"India",
-"event":"Test1"
+"event":"Test1",
+"emailToSendPhoto":"srinidhi.test@gmail.com"
 }
 
 }

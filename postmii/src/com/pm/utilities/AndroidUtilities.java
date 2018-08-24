@@ -84,10 +84,10 @@ public class AndroidUtilities extends TestBase{
 	
 	public void ufLocalisationChecking(WebElement element,String sKey) throws Exception {
 		oJsonLocalisationData=oJsonLocalisation.getJSONObject(System.getProperty("localisation"));
-		log.info("Expected :: "+element.getText()+"\nActual :: "+oJsonLocalisationData.get(sKey));
-		if(!element.getText().equals(oJsonLocalisationData.get(sKey)))
+		log.info("Expected :: "+element.getText().trim()+"\nActual :: "+oJsonLocalisationData.get(sKey));
+		if(!element.getText().trim().equals(oJsonLocalisationData.get(sKey)))
 			throw new Exception("**********************Failed ***********************"
-					+ "\nExpected :: "+element.getText()+"\nActual :: "+oJsonLocalisationData.get(sKey));
+					+ "\nExpected :: "+oJsonLocalisationData.get(sKey)+"\nActual :: "+element.getText().trim());
 		
 	}
 	public boolean ufWait(int itimetowait) throws Exception {
@@ -287,13 +287,13 @@ public class AndroidUtilities extends TestBase{
 
 	public boolean  ufScrollUpToExpectedValue(WebElement element, AppiumDriver<WebElement> driver, String sExpectedValue,int iExitCraiteria) {
 		boolean bRes_flag=true;
-		int exitCount=0;boolean bExit=false;
+		int exitCount=0;boolean bExit=true;
 		while(bExit)
 	    {
 			if(element.getText().equals(sExpectedValue))
-				bExit=true;
+				bExit=false;
 			else if(exitCount==iExitCraiteria)
-				bExit=true;
+				bExit=false;
 			else{
 			int topY = element.getLocation().getY();
 		    int bottomY = topY + element.getSize().getHeight();
@@ -302,6 +302,7 @@ public class AndroidUtilities extends TestBase{
 			}
 			exitCount++;
 	    }
+		System.out.println("Exit Count "+exitCount);
 		return bRes_flag;
 	}
 

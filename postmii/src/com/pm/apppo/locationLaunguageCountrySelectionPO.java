@@ -49,6 +49,7 @@ public class locationLaunguageCountrySelectionPO extends TestBase {
 	WebElement langEnglish;
 	@FindBy(xpath = "//android.widget.Button[@text='ESPAÑOL']")
 	WebElement langEspanol;
+	private WebElement sLanguage;
 	
 	public locationLaunguageCountrySelectionPO(AppiumDriver<WebElement> driver) {
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -58,6 +59,7 @@ public class locationLaunguageCountrySelectionPO extends TestBase {
 		oGetlocation = oJsonTestData.getJSONObject("Credentials");
 		oAndUtil.ufWaitForElementDisplayed(location, 5);
 		location.clear();
+		driver.getKeyboard();
 		oAndUtil.ufLocalisationChecking(location, "selectCountry");
 		location.sendKeys(oGetlocation.getString("country"));
 		event.clear();
@@ -98,8 +100,31 @@ public class locationLaunguageCountrySelectionPO extends TestBase {
 			throw new Exception(sLaunguageNotDisplayError);
 		
 	}
+	public void launguageSelect(String sLanguage) throws Exception{
+		WebElement lang = null;
+		if(sLanguage.equals("langChina"))
+			lang=langChina;
+		else if(sLanguage.equals("langDeutsch"))
+			lang=langDeutsch;
+		else if(sLanguage.equals("langDutch"))
+			lang=langDutch;
+		else if(sLanguage.equals("langEnglish"))
+			lang=langEnglish;
+		else if(sLanguage.equals("langEspanol"))
+			lang=langEspanol;
+		else if(sLanguage.equals("langFrance"))
+			lang=langFrance;
+		else if(sLanguage.equals("langJapan"))
+			lang=langJapan;
+		else if(sLanguage.equals("langPortugues"))
+			lang=langPortugues;
+		else if(sLanguage.equals("langRussian"))
+			lang=langRussian;
+		oAndUtil.ufWaitForElementDisplayed(lang, 5);
+		lang.click();
+	}
 	public void launguageSelect() throws Exception{
-		oAndUtil.ufWaitForElementDisplayed(langFrance, 5);
-		langEnglish.click();  
+		oAndUtil.ufWaitForElementDisplayed(langChina, 5);
+		langEnglish.click();
 	}
 }

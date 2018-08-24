@@ -1,5 +1,7 @@
 package com.pm.utilities;
 
+import org.openqa.selenium.support.FindBy;
+
 public class Constants {
 	
 	//Environment and Running app (to avoid driver.quit error)
@@ -27,5 +29,10 @@ public class Constants {
 			+ "\"email\":\"srinidhi.test@gmail.com\","
 			+ "\"lang\":\"changemelang\","
 			+ "\"content\":\"multipart/form-data\"}";
-
+	
+	//Localisation Values
+	
+	 
+	public static final String langFrance="FR",langRussian="RU",langChina="IT",langDeutsch="DE", 
+			langPortugues="PT",langJapan="JA",langDutch="ZH",langEnglish="EN",langEspanol="ES";
 }

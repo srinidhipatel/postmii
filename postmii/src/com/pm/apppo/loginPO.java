@@ -12,8 +12,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.pm.utilities.TestBase;
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -70,12 +72,16 @@ public class loginPO extends TestBase {
 		oGetCredentials = oJsonTestData.getJSONObject("Credentials");
 		oAndUtil.ufLocalisationChecking(login, "login");
 		username.clear();
+		username.click();
 		oAndUtil.ufLocalisationChecking(username, "email");
 		username.sendKeys(oGetCredentials.getString("username"));
 		password.clear();
 		oAndUtil.ufLocalisationChecking(password, "password");
 		password.sendKeys(oGetCredentials.getString("password"));
+		
+		driver.hideKeyboard();
 		loginButton.click();
+		driver.getKeyboard();
 	}
 
 	public void gettingControl() {

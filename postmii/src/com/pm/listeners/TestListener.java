@@ -51,7 +51,7 @@ public class TestListener extends BaseTest implements ITestListener {
         
       	try {
       	System.out.println("TestNgListner : Screenshot for failed case");
-		String	temp = CommonUtilities.getScreenshot(TestBase.driver);
+		//String	temp = CommonUtilities.getScreenshot(TestBase.driver);
         	
 		} catch ( Exception e) {
 			e.printStackTrace();
