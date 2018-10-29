@@ -4,14 +4,10 @@ package com.pm.apppo;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import org.openqa.selenium.support.PageFactory;
-
-import com.gargoylesoftware.htmlunit.OnbeforeunloadHandler;
 import com.pm.utilities.TestBase;
 
 import io.appium.java_client.AppiumDriver;
