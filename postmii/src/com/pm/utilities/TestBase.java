@@ -9,7 +9,9 @@ import io.appium.java_client.android.AndroidDriver;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -37,6 +39,12 @@ public class TestBase {
 	public static String AutomationRunning;
 	Logger log = Logger.getLogger(getClass().getSimpleName());
 
+	
+	public WebDriver driverWeb;
+	WebElement mele;
+	ChromeDriver ch;
+	
+	
 	@BeforeSuite
 	public void TriggerDependencies() throws Exception {
 		// System.out.println(System.getProperty("os.name"));

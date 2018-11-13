@@ -34,7 +34,7 @@ public void urlSetUp() throws Exception{
 }
 
 
-@DataProvider(name = "language")
+@DataProvider(name = "language",parallel = true)
 
 public static Object[][] credentials() {
 

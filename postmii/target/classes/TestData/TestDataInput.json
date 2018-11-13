@@ -1,25 +1,25 @@
 {
-"Halodoc" : {
-"AppPackageName":"com.linkdokter.halodoc.android",
-"AppActivity":"com.linkdokter.halodoc.android.ui.activity.SplashActivity",
-"_ios_AppPackageName":"com.linkdokter.halodoc",
-"BundleId":"com.linkdokter.halodoc",
-"ios_AppActivity":"com.linkdokter.halodoc.HaloDociOS.HomeScreen"
+"postmii" : {
+"AppPackageName":"postmii.com.users",
+"_AppActivity":"postmii.com.users.activities.User3PhotoApparatActivity_",
+"AppActivity":"postmii.com.users.activities.Employee0AutoManualActivity_",
+"_ios_AppPackageName":"postmii.com.users",
+"BundleId":"postmii.com.users",
+"ios_AppActivity":"com.likter.postmii.postmiiiOS.HomeScreen"
 },
-"HalodocStage":{
-"AppPackageName":"com.linkdokter.halodoc.android",
-"AppActivity":"com.linkdokter.halodoc.android.ui.activity.SplashActivity",
-"ios_AppPackageName":"com.linkdokter.halodoc.HaloDoc",
-"ios_AppActivity":"com.linkdokter.halodoc.ui.activity.SplashActivity"
+"postmiiStage":{
+"AppPackageName":"postmii.com.users",
+"AppActivity":"postmii.com.users.activities.Employee0AutoManualActivity",
+"_ios_AppPackageName":"postmii.com.users",
+"BundleId":"postmii.com.users",
+"ios_AppActivity":"com.likter.postmii.postmiiiOS.HomeScreen"
 },
-"OTP Details" :{
-"Phone Number":"12345678913",
-"_Phone Number": "82213509455",
-"OTP":"416895",
-"AutoOTP":"true"
-},
-
-"Invalid OTP":{
-"Invalid OTP" : "000000"
+"Credentials":{
+"username":"maintec@postmii.com",
+"password":"maintec",
+"country":"India",
+"event":"Test1",
+"emailToSendPhoto":"srinidhi.test@gmail.com"
 }
+
 }

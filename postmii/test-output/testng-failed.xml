@@ -1,16 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite thread-count="20" guice-stage="DEVELOPMENT" name="Failed suite [postmiiAPIComplete]" parallel="tests">
+  <listeners>
+    <listener class-name="com.pm.listeners.TestListener"/>
+  </listeners>
+  <test name="info(failed)" parallel="tests">
     <classes>
-      <class name="com.pm.api.login">
+      <class name="com.pm.api.emailcard">
         <methods>
-          <include name="loginAPI_ResponseVerification_token_id_email"/>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.emailcard -->
+      <class name="com.pm.api.template">
+        <methods>
           <include name="urlSetUp"/>
           <include name="ShuttingDownAllDependencies"/>
           <include name="TriggerDependencies"/>
         </methods>
+      </class> <!-- com.pm.api.template -->
+      <class name="com.pm.api.login">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
       </class> <!-- com.pm.api.login -->
+      <class name="com.pm.api.info">
+        <methods>
+          <include name="infosAPI_WrongCountryCode_ResponseCode418"/>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.info -->
+      <class name="com.pm.api.logout">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.logout -->
+      <class name="com.pm.api.filter">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.filter -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- info(failed) -->
+  <test name="filter(failed)" parallel="tests">
+    <classes>
+      <class name="com.pm.api.emailcard">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.emailcard -->
+      <class name="com.pm.api.template">
+        <methods>
+          <include name="urlSetUp"/>
+          <include name="ShuttingDownAllDependencies"/>
+          <include name="TriggerDependencies"/>
+        </methods>
+      </class> <!-- com.pm.api.template -->
+      <class name="com.pm.api.login">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.login -->
+      <class name="com.pm.api.info">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.info -->
+      <class name="com.pm.api.logout">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.logout -->
+      <class name="com.pm.api.filter">
+        <methods>
+          <include name="filterAPI_WrongfilterCode_ResponseCode418"/>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.filter -->
+    </classes>
+  </test> <!-- filter(failed) -->
+  <test name="template(failed)" parallel="tests">
+    <classes>
+      <class name="com.pm.api.emailcard">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.emailcard -->
+      <class name="com.pm.api.template">
+        <methods>
+          <include name="urlSetUp"/>
+          <include name="templateAPI_WrongfilterCode_ResponseCode418"/>
+          <include name="ShuttingDownAllDependencies"/>
+          <include name="TriggerDependencies"/>
+        </methods>
+      </class> <!-- com.pm.api.template -->
+      <class name="com.pm.api.login">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.login -->
+      <class name="com.pm.api.info">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.info -->
+      <class name="com.pm.api.logout">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.logout -->
+      <class name="com.pm.api.filter">
+        <methods>
+          <include name="urlSetUp"/>
+        </methods>
+      </class> <!-- com.pm.api.filter -->
+    </classes>
+  </test> <!-- template(failed) -->
+</suite> <!-- Failed suite [postmiiAPIComplete] -->

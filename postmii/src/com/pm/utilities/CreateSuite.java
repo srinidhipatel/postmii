@@ -37,6 +37,14 @@ public class CreateSuite {
 			Element mainRootElement = doc.createElement("suite");
 			doc.appendChild(mainRootElement);
 			mainRootElement.setAttribute("name", System.getProperty("SuiteName"));
+			mainRootElement.setAttribute("parallel", "tests");
+			mainRootElement.setAttribute("thread-count", "10");
+			try {
+			if(System.getProperty("ListnerRequired").equalsIgnoreCase("true"))
+			{
+			mainRootElement.appendChild(addListnersToTag(doc,System.getProperty("ListnerPackagePath")));
+			}}catch(Exception ea) {System.out.println("Listners not used");}
+			// parallel="tests" thread-count="4"
 			sPackageName = System.getProperty("Packages");
 			sIgnoreTestCase = System.getProperty("ignoreCase");
 			
@@ -93,6 +101,7 @@ public class CreateSuite {
 			e.printStackTrace();
 		}
 	}
+	
 	private static String convertPackageIntoPath(String sPackageName){
 		String sFilePath;
 		sFilePath=sPackageName.replaceAll("\\.", "/");
@@ -125,6 +134,13 @@ public class CreateSuite {
 		return sArrFileName;
 	}
 
+	private static Node addListnersToTag(Document doc, String sPackageName) {
+		Element TagListners = doc.createElement("listeners");
+		Element TagListnerPackage = doc.createElement("listener");
+		TagListners.appendChild(TagListnerPackage);
+		TagListnerPackage.setAttribute("class-name", sPackageName);
+		return TagListners;
+	}
 	private static Node addValuesToTags(Document doc, String sTestName, String sPackageName){
 		Element TagTest = doc.createElement("test");
 		TagTest.setAttribute("name", sTestName);

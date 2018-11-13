@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.pm.api.login">
+      <class name="com.pm.api.emailcard">
         <methods>
-          <include name="loginAPI_ResponseVerification_token_id_email"/>
-          <include name="urlSetUp"/>
+          <include name="emailCardAPI_WrongLanguageCode_ResponseCode405"/>
           <include name="ShuttingDownAllDependencies"/>
           <include name="TriggerDependencies"/>
+          <include name="urlSetUp"/>
         </methods>
-      </class> <!-- com.pm.api.login -->
+      </class> <!-- com.pm.api.emailcard -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="postmiiAPIComplete" parallel="tests"
+	thread-count="10">
+	<listeners>
+		<listener class-name="com.pm.listeners.TestListener" />
+	</listeners>
+	<test name="emailcard">
+		<classes>
+			<class name="com.pm.api.emailcard" />
+		</classes>
+	</test>
+	<test name="filter">
+		<classes>
+			<class name="com.pm.api.filter" />
+		</classes>
+	</test>
+	<test name="info">
+		<classes>
+			<class name="com.pm.api.info" />
+		</classes>
+	</test>
+	<test name="login">
+		<classes>
+			<class name="com.pm.api.login" />
+		</classes>
+	</test>
+	<test name="logout">
+		<classes>
+			<class name="com.pm.api.logout" />
+		</classes>
+	</test>
+	<test name="template">
+		<classes>
+			<class name="com.pm.api.template" />
+		</classes>
+	</test>
+</suite>
